@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">watch movie</string>
+    <string name="status_name">Статус:</string>
+    <string name="vote_name">Проголосували</string>
+    <string name="revenu_name">Кошторис</string>
+    <string name="runtime_name">Тривалість:</string>
+    <string name="no_overview_name">Нажаль, опис відсутній!</string>
+</resources>
