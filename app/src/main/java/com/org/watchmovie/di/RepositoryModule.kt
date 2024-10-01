@@ -20,10 +20,4 @@ abstract class RepositoryModule {
         mediaRepositoryImpl: RepositoryMovieListImpl
     ): IRepositoryMovieList
 
-//    @Binds
-//    @Singleton
-//    abstract fun bindRepositoryMovieDetails(
-//        RepositoryMovieDetailsImpl: RepositoryMovieDetailsImpl
-//    ): IRepositoryMovieDetails
-
 }
