@@ -82,6 +82,8 @@ dependencies {
     //Image loader coil
     implementation("io.coil-kt:coil-compose:2.4.0")
     //testing tools
+    androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.10.0")
+    androidTestImplementation("com.google.truth:truth:1.1.3")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

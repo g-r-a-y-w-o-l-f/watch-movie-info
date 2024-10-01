@@ -1,9 +1,11 @@
 package com.org.watchmovie.ui.compose
 
+import android.content.res.Resources.Theme
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -26,6 +28,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -62,21 +65,47 @@ fun ShowMovieGridList(movies: List<Movie>, modifier: Modifier, actionSelect: (Mo
 fun ShowItemMovie(movie: Movie, modifier: Modifier, actionSelect: (Movie) -> Unit ) {
     Card(modifier = modifier
         .padding(4.dp)
-        .height(300.dp)
+        .height(360.dp)
         .fillMaxWidth(),
         onClick = { actionSelect(movie) } ) {
-
-        Box(modifier = Modifier.fillMaxSize()){
-            AsyncImage( modifier = Modifier.fillMaxSize(),
-                model = ImageRequest.Builder(context = LocalContext.current)
-                    .data(StaticData.BASE_IMAGE_URL_W500 + movie.posterPath)
-                    .crossfade(true)
-                    .build(),
-                placeholder = painterResource(R.drawable.baseline_info_movies_24),
-                contentDescription = "Loading image...",
-                error = painterResource(R.drawable.ic_error),
-                contentScale = ContentScale.Crop
+        Column {
+            Box(modifier = Modifier.fillMaxWidth().height(300.dp)) {
+                AsyncImage(
+                    modifier = Modifier.fillMaxSize(),
+                    model = ImageRequest.Builder(context = LocalContext.current)
+                        .data(StaticData.BASE_IMAGE_URL_W500 + movie.posterPath)
+                        .crossfade(true)
+                        .build(),
+                    placeholder = painterResource(R.drawable.baseline_info_movies_24),
+                    contentDescription = "Loading image...",
+                    error = painterResource(R.drawable.ic_error),
+                    contentScale = ContentScale.Crop
+                )
+            }
+            Spacer(
+                Modifier
+                    .fillMaxWidth()
+                    .height(4.dp))
+            Text(
+                modifier = Modifier.background(Color.Transparent).padding(horizontal = 4.dp),
+                text = movie.title ?: "",
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                style = Typography.titleMedium,
             )
+            Spacer(
+                Modifier
+                    .fillMaxWidth()
+                    .height(4.dp))
+            movie.overview?.let { over ->
+                Text(
+                    modifier = Modifier.background(Color.Transparent).padding(horizontal = 4.dp),
+                    text = over.ifBlank { stringResource(R.string.no_overview_name) } ,
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis,
+                    style = Typography.bodyMedium,
+                )
+            }
         }
     }
 }

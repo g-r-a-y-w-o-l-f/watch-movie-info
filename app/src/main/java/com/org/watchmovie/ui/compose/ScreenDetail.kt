@@ -23,6 +23,7 @@ import androidx.compose.ui.AbsoluteAlignment
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -33,6 +34,7 @@ import coil.request.ImageRequest
 import com.org.watchmovie.R
 import com.org.watchmovie.data.local.StaticData
 import com.org.watchmovie.ui.UIState
+import com.org.watchmovie.ui.theme.Purple40
 import com.org.watchmovie.ui.theme.Typography
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
@@ -62,6 +64,7 @@ fun ScreenDetail(modifier: Modifier, screenState: UIState, backAction: () -> Uni
                                             onClick = backAction
                                         ),
                                     painter = painterResource(R.drawable.baseline_arrow_back_24),
+                                    colorFilter = ColorFilter.tint(Purple40),
                                     contentDescription = "backButton...",)
                                 Spacer(
                                     Modifier
@@ -95,7 +98,7 @@ fun ScreenDetail(modifier: Modifier, screenState: UIState, backAction: () -> Uni
                         Text(
                             modifier = Modifier.background(Color.Transparent),
                             text = data?.title ?: "",
-                            style = Typography.titleLarge.copy(Color.Black),
+                            style = Typography.titleLarge,
                         )
                         data?.tagline?.let { tag ->
                             if(tag.isNotBlank()) {
@@ -109,7 +112,7 @@ fun ScreenDetail(modifier: Modifier, screenState: UIState, backAction: () -> Uni
                                         .background(Color.Transparent)
                                         .align(AbsoluteAlignment.Right),
                                     text = tag,
-                                    style = Typography.bodyMedium.copy(Color.Red),
+                                    style = Typography.bodyMedium,
                                 )
                             }
                         }
@@ -122,7 +125,7 @@ fun ScreenDetail(modifier: Modifier, screenState: UIState, backAction: () -> Uni
                             Text(
                                 modifier = Modifier.background(Color.Transparent),
                                 text = overView.ifBlank { stringResource(R.string.no_overview_name) },
-                                style = Typography.bodyMedium.copy(Color.DarkGray),
+                                style = Typography.bodyMedium,
                             )
                         }
                         Spacer(
@@ -137,7 +140,7 @@ fun ScreenDetail(modifier: Modifier, screenState: UIState, backAction: () -> Uni
                             Text(
                                 modifier = Modifier.background(Color.Transparent),
                                 text = stringResource(R.string.status_name),
-                                style = Typography.titleMedium.copy(Color.Black),
+                                style = Typography.titleMedium,
                             )
                             Spacer(
                                 Modifier
@@ -148,7 +151,7 @@ fun ScreenDetail(modifier: Modifier, screenState: UIState, backAction: () -> Uni
                                     .background(Color.Transparent)
                                     .align(Alignment.CenterVertically),
                                 text = data?.status ?: "",
-                                style = Typography.bodyMedium.copy(Color.DarkGray),
+                                style = Typography.bodyMedium,
                             )
                             Spacer(
                                 Modifier
@@ -160,7 +163,7 @@ fun ScreenDetail(modifier: Modifier, screenState: UIState, backAction: () -> Uni
                                         .background(Color.Transparent)
                                         .align(Alignment.CenterVertically),
                                     text = publish,
-                                    style = Typography.bodyMedium.copy(Color.DarkGray),
+                                    style = Typography.bodyMedium,
                                 )
                             }
                         }
@@ -177,7 +180,7 @@ fun ScreenDetail(modifier: Modifier, screenState: UIState, backAction: () -> Uni
                             Text(
                                 modifier = Modifier.background(Color.Transparent),
                                 text = stringResource(R.string.vote_name),
-                                style = Typography.titleMedium.copy(Color.Black),
+                                style = Typography.titleMedium,
                             )
                             Spacer(
                                 Modifier
@@ -188,14 +191,14 @@ fun ScreenDetail(modifier: Modifier, screenState: UIState, backAction: () -> Uni
                                     .background(Color.Transparent)
                                     .align(Alignment.CenterVertically),
                                 text = "${data?.voteCount ?: "0"}",
-                                style = Typography.bodyMedium.copy(Color.DarkGray),
+                                style = Typography.bodyMedium,
                             )
                             Text(
                                 modifier = Modifier
                                     .background(Color.Transparent)
                                     .align(Alignment.CenterVertically),
                                 text = " / ${data?.voteAverage ?: "0.0"}",
-                                style = Typography.bodyMedium.copy(Color.DarkGray),
+                                style = Typography.bodyMedium,
                             )
                         }
                         Spacer(
@@ -219,7 +222,7 @@ fun ScreenDetail(modifier: Modifier, screenState: UIState, backAction: () -> Uni
                                 Text(
                                     modifier = Modifier.background(Color.Transparent),
                                     text = "$revenu $",
-                                    style = Typography.bodyMedium.copy(Color.DarkGray),
+                                    style = Typography.bodyMedium,
                                 )
 
                             }
@@ -237,7 +240,7 @@ fun ScreenDetail(modifier: Modifier, screenState: UIState, backAction: () -> Uni
                                 Text(
                                     modifier = Modifier.background(Color.Transparent),
                                     text = stringResource(R.string.runtime_name),
-                                    style = Typography.titleMedium.copy(Color.Black),
+                                    style = Typography.titleMedium,
                                 )
                                 Spacer(
                                     Modifier
@@ -246,7 +249,7 @@ fun ScreenDetail(modifier: Modifier, screenState: UIState, backAction: () -> Uni
                                 Text(
                                     modifier = Modifier.background(Color.Transparent),
                                     text = "$runtime хв",
-                                    style = Typography.bodyMedium.copy(Color.DarkGray),
+                                    style = Typography.bodyMedium,
                                 )
 
                             }
