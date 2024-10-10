@@ -36,7 +36,6 @@ import com.org.watchmovie.R
 import com.org.watchmovie.data.local.StaticData
 import com.org.watchmovie.domain.model.Movie
 import com.org.watchmovie.ui.theme.Typography
-import kotlinx.coroutines.flow.asFlow
 
 /**
  * Created by Serhii Polishchuk on 26.09.24

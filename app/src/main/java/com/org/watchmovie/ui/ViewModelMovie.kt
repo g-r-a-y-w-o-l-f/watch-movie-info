@@ -62,7 +62,7 @@ class ViewModelMovie @Inject constructor(private val repository: IRepositoryMovi
                                 stateUiScreen = UIState.Details(data = it.data)
                             }
 
-                            is Resource.Failure -> Unit
+                            is Resource.Failure -> stateUiScreen = UIState.Failure("No data")
                             is Resource.Loading -> Unit
                         }
                     }

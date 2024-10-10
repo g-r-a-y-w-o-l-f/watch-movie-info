@@ -22,7 +22,6 @@ import com.org.watchmovie.ui.ViewModelMovie
  * Created by Serhii Polishchuk on 26.09.24
  */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieApp(modifier: Modifier, viewModelMovie: ViewModelMovie) {
 

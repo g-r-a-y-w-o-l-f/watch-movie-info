@@ -5,4 +5,5 @@
     <string name="revenu_name">Кошторис</string>
     <string name="runtime_name">Тривалість:</string>
     <string name="no_overview_name">Нажаль, опис відсутній!</string>
+    <string name="error_base_message">Ой!.. Трапилося щось дивне\nСпробуйте пізніше...</string>
 </resources>

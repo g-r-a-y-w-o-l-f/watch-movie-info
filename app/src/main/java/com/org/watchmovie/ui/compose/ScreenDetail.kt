@@ -3,6 +3,7 @@ package com.org.watchmovie.ui.compose
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -28,6 +29,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -36,7 +38,6 @@ import com.org.watchmovie.data.local.StaticData
 import com.org.watchmovie.ui.UIState
 import com.org.watchmovie.ui.theme.Purple40
 import com.org.watchmovie.ui.theme.Typography
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 /**
  * Created by Serhii Polishchuk on 26.09.24
@@ -47,7 +48,63 @@ import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 fun ScreenDetail(modifier: Modifier, screenState: UIState, backAction: () -> Unit ){
 
     when(screenState){
-        is UIState.Failure -> Unit
+        is UIState.Failure -> {
+            Scaffold(modifier = modifier.fillMaxSize(),
+                topBar = { TopAppBar(
+                    navigationIcon = {
+                        Image(
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .width(56.dp)
+                                .padding(16.dp)
+                                .clickable(
+                                    enabled = true,
+                                    onClick = backAction
+                                ),
+                            painter = painterResource(R.drawable.baseline_arrow_back_24),
+                            colorFilter = ColorFilter.tint(Purple40),
+                            contentDescription = "backButton...",)
+                        Spacer(
+                            Modifier
+                                .fillMaxHeight()
+                                .width(16.dp)) },
+                    title = { Text (text = "") } ) }
+            ) {
+                Surface(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(it),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+
+                    Column(
+                        modifier = modifier
+                            .fillMaxSize()
+                            .padding(horizontal = 4.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Image(
+                            modifier = Modifier
+                                .height(100.dp)
+                                .width(100.dp),
+                            painter = painterResource(R.drawable.ic_error),
+                            contentDescription = "error icon...",)
+                        Spacer(
+                            Modifier
+                                .fillMaxWidth()
+                                .height(8.dp)
+                        )
+                        Text(
+                            textAlign = TextAlign.Center,
+                            text = stringResource(R.string.error_base_message),
+                            color = Color.Red,
+                            style = Typography.titleLarge,
+                        )
+                    }
+                }
+            }
+        }
         is UIState.Loading -> Unit
         is UIState.Details -> {
             val data = screenState.data
@@ -213,7 +270,7 @@ fun ScreenDetail(modifier: Modifier, screenState: UIState, backAction: () -> Uni
                                 Text(
                                     modifier = Modifier.background(Color.Transparent),
                                     text = stringResource(R.string.revenu_name),
-                                    style = Typography.titleMedium.copy(Color.Black),
+                                    style = Typography.titleMedium,
                                 )
                                 Spacer(
                                     Modifier
